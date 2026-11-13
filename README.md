@@ -4,7 +4,7 @@ Klickbares Mock-up einer internen Anwendung, mit der das Projekt **Kontomodelle 
 (Erste Bank Österreich) definiert wird: vier neue Kontomodelle (3 + 1), der Business Case dahinter
 und ein Konfigurator für Szenarien. Stand 13.11.2026, Entwurf.
 
-> **Alle Zahlen sind Beispieldaten.** Modellnamen, Preise, Margen, Kundenzahlen und Quellen
+> **Persönliches Mock-up, kein offizielles Dokument der Erste Bank.** Alle Zahlen sind Beispieldaten. Modellnamen, Preise, Margen, Kundenzahlen und Quellen
 > sind erfunden, damit der Rechenweg schlüssig ist. Die echten Werte kommen später aus dem
 > Konfigurator.
 
