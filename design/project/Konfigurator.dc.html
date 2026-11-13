@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Konfigurator – Szenarien und Variablen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#0F172A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1A56DB}a:hover{color:#153FA3}
+.nav a{text-decoration:none;color:#475569;padding:10px 4px;font-size:15px;font-weight:500;border-bottom:2px solid transparent}
+.nav a.on{color:#0F172A;border-bottom-color:#1A56DB;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;line-height:16px;white-space:nowrap}
+.chip-ok{background:#E8F0FE;color:#153FA3}
+.chip-as{background:#FEF0E6;color:#9A3412}
+.card{background:#fff;border:1px solid #E2E8F0;border-radius:14px}
+.in{height:38px;padding:0 10px;border:1px solid #CBD5E1;border-radius:8px;background:#fff;font:inherit;font-size:14px;color:#0F172A;box-sizing:border-box;width:100%;min-width:0}
+.in:focus{outline:2px solid #1A56DB;outline-offset:-1px;border-color:#1A56DB}
+.in.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:#F8FAFC}
+.rng{width:100%;margin:0;accent-color:#C2410C;height:44px;cursor:pointer}
+.seg{display:inline-flex;border:1px solid #CBD5E1;border-radius:8px;overflow:hidden;height:38px}
+.seg button{height:100%;padding:0 12px;border:0;background:#fff;font:inherit;font-size:13px;font-weight:600;color:#475569;cursor:pointer;min-width:44px}
+.seg button + button{border-left:1px solid #CBD5E1}
+.seg button.as-on{background:#FEF0E6;color:#9A3412}
+.seg button.ok-on{background:#1A56DB;color:#fff}
+.ck{display:inline-flex;width:22px;height:22px;border-radius:999px;align-items:center;justify-content:center;flex:0 0 auto}
+.ck-ok{background:#1A56DB;color:#fff}
+.ck-wait{background:#fff;border:1.5px dashed #94A3B8;color:#94A3B8}
+.fx{display:inline-flex;width:18px;height:18px;border-radius:5px;background:#E2E8F0;color:#334155;font-size:12px;font-weight:700;align-items:center;justify-content:center;flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.calc{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px dashed #94A3B8;border-radius:10px;background:#F8FAFC;font-size:13px;line-height:18px;color:#334155}
+.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#64748B}
+.row{display:grid;grid-template-columns:minmax(180px,1.2fr) minmax(230px,1.5fr) 70px 190px minmax(240px,1.5fr);gap:12px;align-items:center;padding:10px 20px;border-top:1px solid #F1F5F9}
+.rowhead{border-top:0;padding-top:0;padding-bottom:8px}
+.scn{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;padding:12px 14px;border:1px solid #E2E8F0;border-radius:10px;background:#fff;font:inherit;cursor:pointer;color:#0F172A}
+.scn.on{border-color:#1A56DB;box-shadow:0 0 0 1px #1A56DB inset;background:#F5F8FF}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:10px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;text-decoration:none}
+.btn-p{background:#1A56DB;color:#fff}.btn-p:hover{background:#153FA3}
+.btn-s{background:#fff;color:#0F172A;border-color:#CBD5E1}.btn-s:hover{background:#F8FAFC}
+.warn{font-size:12px;color:#9A3412;white-space:nowrap}
+</style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+  <header style="background: #fff; border-bottom: 1px solid #E2E8F0">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; min-height: 64px">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0">
+        <div style="width: 36px; height: 36px; border-radius: 9px; background: #1A56DB; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px">K</div>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; line-height: 18px">Kontomodelle Kommerz Neu</div>
+          <div style="font-size: 12px; color: #64748B; line-height: 16px">Erste Bank Österreich · Projekt-Workspace</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Hauptnavigation" style="display: flex; gap: 24px; align-self: stretch; align-items: flex-end">
+        <a href="Main.dc.html">Startseite</a>
+        <a href="BusinessCase.dc.html">Business Case</a>
+        <a class="on" href="Konfigurator.dc.html" aria-current="page">Konfigurator</a>
+      </nav>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0">
+        <span class="chip" style="background: #F1F5F9; color: #334155">Szenario: {{activeName}}</span>
+        <span class="chip chip-ok">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          {{okCount}} / {{total}} verifiziert
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex: 1; max-width: 1360px; width: 100%; margin: 0 auto; padding: 32px 24px 64px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+    <!-- Szenarien -->
+    <aside style="flex: 1 1 260px; max-width: 300px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 class="lbl" style="margin: 0; font-size: 12px">Szenarien</h2>
+        <span style="font-size: 12px; color: #64748B">{{scnCount}} gespeichert</span>
+      </div>
+      <sc-for list="{{scenarios}}" as="s" hint-placeholder-count="3">
+        <button class="scn {{s.cls}}" onClick="{{s.pick}}" aria-pressed="{{s.on}}">
+          <span style="width: 10px; height: 10px; border-radius: 999px; margin-top: 5px; flex: 0 0 auto; background: {{s.dot}}"></span>
+          <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+            <span style="font-size: 14px; font-weight: 600">{{s.name}}</span>
+            <span style="font-size: 12px; color: #64748B">{{s.meta}}</span>
+          </span>
+        </button>
+      </sc-for>
+      <button class="btn btn-s" style="justify-content: flex-start" onClick="{{newScenario}}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Neues Szenario
+      </button>
+
+      <div class="card" style="padding: 16px 18px; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; border-style: dashed; border-color: #94A3B8; background: #F8FAFC">
+        <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 13px; font-weight: 600">Wirkung dieses Szenarios</span><span class="fx" aria-label="berechnet">=</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #64748B">Ertragsdelta p. a.</span><span style="font-weight: 700; color: #1A56DB">+ 6,8 Mio €</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #64748B">Kunden teurer</span><span style="font-weight: 600">23 %</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #64748B">Abwanderungsrisiko</span><span style="font-weight: 600">{{churnShow}}</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #64748B">Belastbarkeit</span><span style="font-weight: 600">{{pct}} %</span></div>
+        <div style="height: 6px; border-radius: 3px; background: #FEF0E6; overflow: hidden" role="img" aria-label="Anteil verifizierter Felder"><div style="height: 100%; background: #1A56DB; width: {{pctW}}"></div></div>
+        <a href="BusinessCase.dc.html" style="font-size: 13px; font-weight: 600; text-decoration: none; margin-top: 4px">Im Business Case ansehen</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 10px; background: #fff; border: 1px solid #E2E8F0; font-size: 13px; line-height: 19px; color: #334155">
+        <span class="lbl">So liest du die Tabelle</span>
+        <div style="display: flex; gap: 10px; align-items: flex-start"><span class="ck ck-ok" style="width: 18px; height: 18px; margin-top: 1px" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Verifiziert</b>: Wert mit Confluence-Link. Nur dann zählt der blaue Haken.</span></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start"><span class="chip chip-as" style="margin-top: 1px">A</span><span><b>Annahme</b>: Schätzung des Teams. Wo klar ist, dass es keinen belegbaren Wert geben wird, gibt es einen Schieberegler mit plausibler Spanne.</span></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start"><span class="fx" style="margin-top: 1px" aria-hidden="true">=</span><span><b>Berechnet</b>: wird nie eingegeben, folgt aus den Eingaben der Gruppe. Grau gestrichelt, wie im Business Case.</span></div>
+        <div style="padding-top: 6px; border-top: 1px solid #F1F5F9; color: #64748B">Ein Wert kann eine Zahl sein („12,40“) oder eine Formel mit anderen Variablen („= kosten_buchung × 150“).</div>
+      </div>
+    </aside>
+
+    <!-- Variablen -->
+    <section style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+        <div>
+          <h1 style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Eingaben · {{activeName}}</h1>
+          <div style="font-size: 13px; color: #64748B; margin-top: 4px">{{savedText}} · {{total}} Eingabefelder, berechnete Werte stehen unter jeder Gruppe.</div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <button class="btn btn-s" onClick="{{duplicate}}">Als Kopie speichern</button>
+          <button class="btn btn-p" onClick="{{save}}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Szenario speichern
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 13px">
+        <span style="color: #64748B">Filter:</span>
+        <button class="chip" style="border: 0; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; background: {{fAllBg}}; color: {{fAllFg}}" onClick="{{filterAll}}">Alle ({{total}})</button>
+        <button class="chip" style="border: 0; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; background: {{fAsBg}}; color: {{fAsFg}}" onClick="{{filterAs}}">Annahmen ({{asCount}})</button>
+        <button class="chip" style="border: 0; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; background: {{fOkBg}}; color: {{fOkFg}}" onClick="{{filterOk}}">Verifiziert ({{okCount}})</button>
+        <button class="chip" style="border: 0; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; background: {{fSlBg}}; color: {{fSlFg}}" onClick="{{filterSl}}">Mit Schieberegler ({{slCount}})</button>
+      </div>
+
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+        <div class="card" style="overflow-x: auto">
+          <div style="min-width: 960px; padding: 16px 0 0">
+            <div style="display: flex; align-items: baseline; gap: 10px; padding: 0 20px 12px">
+              <h2 style="margin: 0; font-size: 16px; font-weight: 700">{{g.name}}</h2>
+              <span style="font-size: 13px; color: #64748B">{{g.hint}}</span>
+            </div>
+            <div class="row rowhead">
+              <span class="lbl">Variable</span><span class="lbl">Eingabe · Zahl, Formel oder Regler</span><span class="lbl">Einheit</span><span class="lbl">Status</span><span class="lbl">Quelle (Confluence)</span>
+            </div>
+            <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+              <div class="row">
+                <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                  <label for="{{r.id}}" style="font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</label>
+                  <span style="font-size: 12px; color: #64748B; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{r.key}}</span>
+                </div>
+                <div style="min-width: 0">
+                  <sc-if value="{{r.useSlider}}" hint-placeholder-val="{{false}}">
+                    <div style="display: flex; align-items: center; gap: 10px">
+                      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+                        <input id="{{r.id}}" class="rng" type="range" min="{{r.min}}" max="{{r.max}}" step="{{r.step}}" value="{{r.num}}" onChange="{{r.setSlider}}" aria-label="Regler für {{r.name}}">
+                        <div style="display: flex; justify-content: space-between; font-size: 11px; color: #94A3B8; margin-top: -6px"><span>{{r.minShow}}</span><span>{{r.maxShow}}</span></div>
+                      </div>
+                      <span style="min-width: 64px; text-align: right; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; color: #9A3412">{{r.value}}</span>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{r.useText}}" hint-placeholder-val="{{true}}">
+                    <input id="{{r.id}}" class="in {{r.valCls}}" type="text" value="{{r.value}}" onChange="{{r.setValue}}" aria-label="Wert für {{r.name}}">
+                  </sc-if>
+                </div>
+                <span style="font-size: 13px; color: #475569">{{r.unit}}</span>
+                <div class="seg" role="group" aria-label="Status von {{r.name}}">
+                  <button class="{{r.asCls}}" onClick="{{r.setAs}}" aria-pressed="{{r.isAs}}">Annahme</button>
+                  <button class="{{r.okCls}}" onClick="{{r.setOk}}" aria-pressed="{{r.isOk}}">Verifiziert</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; min-width: 0">
+                  <sc-if value="{{r.isOk}}" hint-placeholder-val="{{true}}">
+                    <sc-if value="{{r.linkOk}}" hint-placeholder-val="{{true}}">
+                      <a class="ck ck-ok" href="{{r.link}}" target="_blank" rel="noopener" aria-label="Verifiziert, Confluence-Seite öffnen" title="{{r.link}}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      </a>
+                    </sc-if>
+                    <sc-if value="{{r.linkMissing}}" hint-placeholder-val="{{false}}">
+                      <span class="ck ck-wait" aria-label="Noch nicht verifiziert, Link fehlt">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      </span>
+                    </sc-if>
+                    <div style="display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0">
+                      <input class="in" type="url" value="{{r.link}}" onChange="{{r.setLink}}" placeholder="https://confluence.…/pages/…" aria-label="Confluence-Link für {{r.name}}">
+                      <sc-if value="{{r.linkMissing}}" hint-placeholder-val="{{false}}">
+                        <span class="warn">Confluence-Link erforderlich, sonst gilt das Feld als Annahme.</span>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{r.isAs}}" hint-placeholder-val="{{false}}">
+                    <span class="chip chip-as">Annahme</span>
+                    <span style="font-size: 13px; color: #64748B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.owner}} · {{r.asNote}}</span>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 20px; border-top: 1px solid #E2E8F0; background: #F8FAFC; border-radius: 0 0 14px 14px">
+              <span class="lbl">Daraus berechnet</span>
+              <sc-for list="{{g.calcs}}" as="c" hint-placeholder-count="2">
+                <span class="calc" style="padding: 5px 10px; background: #fff"><span class="fx" aria-hidden="true">=</span><span style="font-weight: 600">{{c.name}}</span><span style="font-weight: 700; color: #0F172A; font-variant-numeric: tabular-nums">{{c.value}}</span></span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid #E2E8F0; background: #fff">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 16px 24px; font-size: 13px; color: #64748B; display: flex; flex-wrap: wrap; gap: 8px 24px">
+      <span>Szenario „{{activeName}}“ · {{savedText}}</span>
+      <span>Änderungen wirken sofort im Business Case</span>
+      <span style="margin-left: auto">Internes Arbeitsmittel · keine Kundenkommunikation</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1760}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const C = 'https://confluence.intern/display/KKN/';
+    this.state = {
+      active: 0,
+      filter: 'all',
+      saved: 'zuletzt gespeichert 12.11.2026, 16:42',
+      scenarios: [
+        { name: 'Basis 2027', meta: 'Empfehlung · 12.11.2026 · M. Huber' },
+        { name: 'Konservativ', meta: 'Marge 34 % · 10.11.2026 · Controlling' },
+        { name: 'Aggressiv Digital', meta: 'Digital 2,90 € · 06.11.2026 · Produkt' }
+      ],
+      rows: [
+        { id: 'v1', group: 'Bestand & Kosten', key: 'kunden_kommerz', name: 'Kommerzkunden gesamt', value: '184.300', unit: 'Kunden', status: 'ok', link: C + 'Bestand+2025', owner: 'Controlling' },
+        { id: 'v2', group: 'Bestand & Kosten', key: 'kosten_buchung', name: 'Kosten je Buchung', value: '0,11', unit: '€', status: 'ok', link: C + 'Stueckkosten+ZV', owner: 'Controlling' },
+        { id: 'v3', group: 'Bestand & Kosten', key: 'kosten_beratung_h', name: 'Kosten je Beratungsstunde', value: '84', unit: '€', status: 'as', link: '', owner: 'Controlling', slider: { min: 50, max: 120, step: 1 } },
+        { id: 'v4', group: 'Bestand & Kosten', key: 'beratung_klassik_h', name: 'Beratung je Klassik-Kunde / Monat', value: '0,022', unit: 'h', status: 'as', link: '', owner: 'Vertrieb', slider: { min: 0, max: 0.1, step: 0.002 } },
+        { id: 'v5', group: 'Segmentierung', key: 'schwelle_wenig', name: 'Schwelle Wenignutzer', value: '30', unit: 'Buch./Monat', status: 'ok', link: C + 'Clusteranalyse', owner: 'Analytics' },
+        { id: 'v6', group: 'Segmentierung', key: 'schwelle_viel', name: 'Schwelle Vielnutzer', value: '150', unit: 'Buch./Monat', status: 'as', link: '', owner: 'Analytics', slider: { min: 80, max: 250, step: 10 } },
+        { id: 'v7', group: 'Segmentierung', key: 'anteil_online', name: 'Anteil reine Online-Kunden', value: '13', unit: '%', status: 'ok', link: C + 'Kanalnutzung+2026', owner: 'Analytics' },
+        { id: 'v8', group: 'Marge & Preis', key: 'marge_kern', name: 'Zielmarge Kernmodelle', value: '38', unit: '%', status: 'ok', link: C + 'Zielmargen+Vorstand', owner: 'Produkt' },
+        { id: 'v9', group: 'Marge & Preis', key: 'marge_premium', name: 'Zielmarge Premium', value: '33', unit: '%', status: 'as', link: '', owner: 'Produkt', slider: { min: 20, max: 45, step: 1 } },
+        { id: 'v10', group: 'Marge & Preis', key: 'markt_klassik', name: 'Marktmedian Klassik', value: '20,70', unit: '€', status: 'ok', link: C + 'Wettbewerb+Q3+2026', owner: 'Marktforschung' },
+        { id: 'v11', group: 'Marge & Preis', key: 'rundung', name: 'Rundungsregel Preis', value: 'auf x,90 abrunden', unit: '–', status: 'as', link: '', owner: 'Produkt' },
+        { id: 'v12', group: 'Markt & Migration', key: 'migrationsregel', name: 'Migrationsregel', value: 'günstigstes passendes Modell', unit: '–', status: 'ok', link: C + 'Migrationslogik', owner: 'Produkt' },
+        { id: 'v13', group: 'Markt & Migration', key: 'churn_teurer', name: 'Abwanderung bei Verteuerung', value: '4', unit: '%', status: 'as', link: '', owner: 'M. Huber', slider: { min: 0, max: 15, step: 0.5 } },
+        { id: 'v14', group: 'Markt & Migration', key: 'rueckgewinn_digital', name: 'Rückgewinn durch Digital', value: '2.400', unit: 'Kunden', status: 'as', link: '', owner: 'Vertrieb', slider: { min: 0, max: 6000, step: 100 } }
+      ]
+    };
+  }
+  upd(id, patch) {
+    this.setState({ rows: this.state.rows.map((r) => (r.id === id ? Object.assign({}, r, patch) : r)) });
+  }
+  parse(v) {
+    const n = parseFloat(String(v).replace(/\./g, '').replace(',', '.'));
+    return isNaN(n) ? 0 : n;
+  }
+  fmt(n, step) {
+    const d = step < 0.01 ? 3 : step < 1 ? 1 : 0;
+    return new Intl.NumberFormat('de-AT', { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
+  }
+  renderVals() {
+    const st = this.state;
+    const isLink = (l) => /^https?:\/\/\S+$/.test(l || '');
+    const rows = st.rows.map((r) => {
+      const isOk = r.status === 'ok';
+      const linkOk = isOk && isLink(r.link);
+      const hasSlider = !!r.slider;
+      const useSlider = hasSlider && !isOk;
+      const s = r.slider || { min: 0, max: 1, step: 1 };
+      return Object.assign({}, r, {
+        isOk: isOk,
+        isAs: !isOk,
+        linkOk: linkOk,
+        linkMissing: isOk && !linkOk,
+        hasSlider: hasSlider,
+        useSlider: useSlider,
+        useText: !useSlider,
+        min: s.min, max: s.max, step: s.step,
+        num: this.parse(r.value),
+        minShow: this.fmt(s.min, s.step) + ' ' + r.unit,
+        maxShow: this.fmt(s.max, s.step) + ' ' + r.unit,
+        asNote: hasSlider ? 'Spanne geschätzt, kein Beleg zu erwarten' : 'ohne Beleg',
+        valCls: (r.value || '').trim().charAt(0) === '=' ? 'formula' : '',
+        asCls: isOk ? '' : 'as-on',
+        okCls: isOk ? 'ok-on' : '',
+        setAs: () => this.upd(r.id, { status: 'as' }),
+        setOk: () => this.upd(r.id, { status: 'ok' }),
+        setValue: (e) => this.upd(r.id, { value: e.target.value }),
+        setSlider: (e) => this.upd(r.id, { value: this.fmt(parseFloat(e.target.value), s.step) }),
+        setLink: (e) => this.upd(r.id, { link: e.target.value })
+      });
+    });
+    const verified = rows.filter((r) => r.linkOk).length;
+    const total = rows.length;
+    const pct = Math.round((verified / total) * 100);
+    const sliders = rows.filter((r) => r.hasSlider).length;
+    const visible = rows.filter((r) => {
+      if (st.filter === 'ok') return r.linkOk;
+      if (st.filter === 'as') return !r.linkOk;
+      if (st.filter === 'sl') return r.hasSlider;
+      return true;
+    });
+    const byKey = {};
+    rows.forEach((r) => { byKey[r.key] = r.num; });
+    const eur = (n) => this.fmt(n, 0.01).replace(/,(\d)$/, ',$10') + ' €';
+    const kostenKlassik = 85 * byKey.kosten_buchung + 2 * 0.6 + byKey.beratung_klassik_h * byKey.kosten_beratung_h;
+    const preisKlassik = kostenKlassik / (1 - byKey.marge_kern / 100);
+    const preisPremium = 26.8 / (1 - byKey.marge_premium / 100);
+    const churnShow = this.fmt(byKey.churn_teurer, 0.5) + ' %';
+    const meta = {
+      'Bestand & Kosten': { hint: 'Ist-Analyse, Schritt 01', calcs: [
+        { name: 'Kostenbasis Klassik / Monat', value: eur(kostenKlassik) },
+        { name: 'Ertrag heute p. a.', value: '30,7 Mio €' }
+      ] },
+      'Segmentierung': { hint: 'Clustergrenzen, Schritt 02', calcs: [
+        { name: 'Cluster Wenig / Regel / Viel / Online', value: '31 / 44 / 12 / 13 %' },
+        { name: 'Regelnutzer', value: '81.100 Kunden' }
+      ] },
+      'Marge & Preis': { hint: 'Preisbildung, Schritt 04', calcs: [
+        { name: 'Rechnerischer Preis Klassik', value: eur(preisKlassik) },
+        { name: 'Rechnerischer Preis Premium', value: eur(preisPremium) },
+        { name: 'Vorschlag Klassik', value: '19,90 €' }
+      ] },
+      'Markt & Migration': { hint: 'Marktwirkung, Schritt 05', calcs: [
+        { name: 'Abwanderungsrisiko', value: '− ' + this.fmt(0.25 * byKey.churn_teurer, 0.1) + ' Mio €' },
+        { name: 'Ertragsdelta p. a.', value: '+ ' + this.fmt(7.8 - 0.25 * byKey.churn_teurer, 0.1) + ' Mio €' }
+      ] }
+    };
+    const order = ['Bestand & Kosten', 'Segmentierung', 'Marge & Preis', 'Markt & Migration'];
+    const groups = order
+      .map((name) => ({ name: name, hint: meta[name].hint, calcs: meta[name].calcs, rows: visible.filter((r) => r.group === name) }))
+      .filter((g) => g.rows.length > 0);
+    const dots = ['#1A56DB', '#64748B', '#0F172A'];
+    const scenarios = st.scenarios.map((s, i) => ({
+      name: s.name, meta: s.meta, on: i === st.active, cls: i === st.active ? 'on' : '', dot: dots[i % dots.length],
+      pick: () => this.setState({ active: i })
+    }));
+    const onBg = '#0F172A', onFg = '#fff', offBg = '#F1F5F9', offFg = '#334155';
+    const f = (k) => st.filter === k;
+    return {
+      activeName: st.scenarios[st.active].name,
+      savedText: st.saved,
+      scenarios: scenarios,
+      scnCount: st.scenarios.length,
+      groups: groups,
+      total: total,
+      okCount: verified,
+      asCount: total - verified,
+      slCount: sliders,
+      pct: pct,
+      pctW: pct + '%',
+      churnShow: churnShow,
+      fAllBg: f('all') ? onBg : offBg, fAllFg: f('all') ? onFg : offFg,
+      fAsBg: f('as') ? onBg : offBg, fAsFg: f('as') ? onFg : offFg,
+      fOkBg: f('ok') ? onBg : offBg, fOkFg: f('ok') ? onFg : offFg,
+      fSlBg: f('sl') ? onBg : offBg, fSlFg: f('sl') ? onFg : offFg,
+      filterAll: () => this.setState({ filter: 'all' }),
+      filterAs: () => this.setState({ filter: 'as' }),
+      filterOk: () => this.setState({ filter: 'ok' }),
+      filterSl: () => this.setState({ filter: 'sl' }),
+      save: () => this.setState({ saved: 'gerade gespeichert' }),
+      duplicate: () => {
+        const src = st.scenarios[st.active];
+        const list = st.scenarios.concat([{ name: src.name + ' (Kopie)', meta: 'Kopie · heute · ungespeichert' }]);
+        this.setState({ scenarios: list, active: list.length - 1, saved: 'noch nicht gespeichert' });
+      },
+      newScenario: () => {
+        const list = st.scenarios.concat([{ name: 'Neues Szenario ' + (st.scenarios.length - 2), meta: 'leer · heute · ungespeichert' }]);
+        this.setState({ scenarios: list, active: list.length - 1, saved: 'noch nicht gespeichert' });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

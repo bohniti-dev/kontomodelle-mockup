@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Business Case – Kontomodelle Kommerz Neu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#0F172A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1A56DB}a:hover{color:#153FA3}
+.nav a{text-decoration:none;color:#475569;padding:10px 4px;font-size:15px;font-weight:500;border-bottom:2px solid transparent}
+.nav a.on{color:#0F172A;border-bottom-color:#1A56DB;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;line-height:16px;white-space:nowrap}
+.chip-ok{background:#E8F0FE;color:#153FA3}
+.chip-as{background:#FEF0E6;color:#9A3412}
+.card{background:#fff;border:1px solid #E2E8F0;border-radius:14px}
+.sec{display:flex;flex-direction:column;gap:16px;scroll-margin-top:24px}
+.sec h2{margin:0;font-size:22px;font-weight:700;letter-spacing:-0.01em;display:flex;align-items:baseline;gap:12px}
+.sec h2 .n{font-size:13px;font-weight:700;color:#1A56DB;font-variant-numeric:tabular-nums}
+.sec h3{margin:0;font-size:16px;font-weight:700}
+.p{margin:0;font-size:15px;line-height:23px;color:#334155;max-width:860px}
+.fld{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid #CBD5E1;border-radius:10px;background:#fff;font-size:13px;line-height:18px}
+.fld b{font-weight:600;white-space:nowrap}
+.fld .v{font-variant-numeric:tabular-nums;white-space:nowrap}
+.calc{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px dashed #94A3B8;border-radius:10px;background:#F8FAFC;font-size:13px;line-height:18px;color:#334155}
+.calc b{font-weight:600;white-space:nowrap}
+.calc .v{font-weight:700;color:#0F172A;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calc .f{color:#64748B;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;white-space:nowrap}
+.fx{display:inline-flex;width:18px;height:18px;border-radius:5px;background:#E2E8F0;color:#334155;font-size:12px;font-weight:700;align-items:center;justify-content:center;flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ck{display:inline-flex;width:18px;height:18px;border-radius:999px;align-items:center;justify-content:center;flex:0 0 auto}
+.ck-ok{background:#1A56DB}
+.ck-ok::before{content:"";display:block;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.ck-as{background:#FEF0E6;color:#9A3412;font-size:10px;font-weight:700}
+.ck-as::before{content:"A"}
+.ref{font-size:10px;color:#1A56DB;text-decoration:none;font-weight:700;vertical-align:super;line-height:0;margin-left:1px}
+.lbl{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#64748B}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-size:12px;font-weight:600;color:#64748B;padding:10px 12px;border-bottom:1px solid #E2E8F0;white-space:nowrap;vertical-align:bottom}
+.tbl th .lbl{display:block;margin-top:3px;font-size:10px}
+.tbl td{padding:11px 12px;border-bottom:1px solid #F1F5F9;vertical-align:middle;font-variant-numeric:tabular-nums}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .num{text-align:right;white-space:nowrap}
+.tbl td.c{background:#F8FAFC;color:#334155}
+.tbl tr.sum td{font-weight:700;border-top:2px solid #E2E8F0;background:#F8FAFC}
+.toc{display:flex;flex-direction:column;gap:2px;font-size:13px}
+.toc a{text-decoration:none;color:#334155;padding:6px 10px;border-radius:8px;display:flex;gap:10px}
+.toc a:hover{background:#F1F5F9;color:#0F172A}
+.toc a .n{color:#94A3B8;font-variant-numeric:tabular-nums;min-width:22px}
+.toc a.sub{padding-left:42px;color:#64748B;font-size:12px}
+.seg{display:inline-flex;border:1px solid #CBD5E1;border-radius:10px;overflow:hidden;background:#fff}
+.seg a,.seg span{display:inline-flex;align-items:center;height:38px;padding:0 14px;font-size:13px;font-weight:600;text-decoration:none;color:#475569}
+.seg a+a,.seg a+span,.seg span+a,.seg span+span{border-left:1px solid #E2E8F0}
+.seg .on{background:#0F172A;color:#fff}
+.seg span{color:#94A3B8}
+.kpi{padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.kpi .k{font-size:12px;font-weight:600;color:#64748B;display:flex;justify-content:space-between;align-items:center}
+.kpi .b{font-size:24px;font-weight:700;letter-spacing:-0.02em}
+.kpi .s{font-size:12px;color:#64748B}
+.bar{height:12px;border-radius:0 4px 4px 0}
+.ql{display:grid;grid-template-columns:36px minmax(220px,1.6fr) minmax(120px,1fr) 100px minmax(200px,1.4fr) 110px;gap:12px;align-items:center;padding:9px 16px;border-top:1px solid #F1F5F9;font-size:13px;scroll-margin-top:24px}
+.ql .no{font-weight:700;color:#1A56DB;font-variant-numeric:tabular-nums}
+.ql a.l{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.step{flex:1 1 150px;min-width:0;background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:14px}
+.ms{flex:1 1 160px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.ms .t{height:10px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+  <header style="background: #fff; border-bottom: 1px solid #E2E8F0">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; min-height: 64px">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0">
+        <div style="width: 36px; height: 36px; border-radius: 9px; background: #1A56DB; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px">K</div>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; line-height: 18px">Kontomodelle Kommerz Neu</div>
+          <div style="font-size: 12px; color: #64748B; line-height: 16px">Erste Bank Österreich · Projekt-Workspace</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Hauptnavigation" style="display: flex; gap: 24px; align-self: stretch; align-items: flex-end">
+        <a href="Main.html">Startseite</a>
+        <a class="on" href="BusinessCase.html" aria-current="page">Business Case</a>
+        <a href="Konfigurator.html">Konfigurator</a>
+      </nav>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0">
+        <span class="chip" style="background: #F1F5F9; color: #334155">Szenario: Basis 2027</span>
+        <span class="chip chip-ok"><span class="ck ck-ok" style="width: 14px; height: 14px" aria-hidden="true"></span>14 / 22 verifiziert</span>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex: 1; max-width: 1320px; width: 100%; margin: 0 auto; padding: 32px 24px 64px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+    <!-- Inhaltsverzeichnis -->
+    <aside class="card" style="flex: 1 1 220px; max-width: 250px; padding: 16px 10px; display: flex; flex-direction: column; gap: 10px" aria-label="Inhaltsverzeichnis">
+      <span class="lbl" style="padding: 0 10px">Inhalt</span>
+      <nav class="toc">
+        <a href="#vorwort"><span class="n">0</span>Vorwort</a>
+        <a href="#executive"><span class="n">1</span>Executive Briefing</a>
+        <a class="sub" href="#empfehlung">Empfehlung</a>
+        <a class="sub" href="#ergebnisse">Ergebnisse in Kürze</a>
+        <a class="sub" href="#entscheidung">Zu treffende Entscheidung</a>
+        <a href="#einleitung"><span class="n">2</span>Einleitung</a>
+        <a class="sub" href="#treiber">Treiber</a>
+        <a class="sub" href="#umfang">Umfang</a>
+        <a class="sub" href="#kennzahlen">Finanzkennzahlen</a>
+        <a href="#analyse"><span class="n">3</span>Analyse</a>
+        <a class="sub" href="#annahmen">Annahmen</a>
+        <a class="sub" href="#cashflow">Cashflow und Barwert</a>
+        <a class="sub" href="#kosten">Kosten</a>
+        <a class="sub" href="#nutzen">Nutzen</a>
+        <a class="sub" href="#risiken">Risiken</a>
+        <a class="sub" href="#umsetzung">Umsetzungsplan</a>
+        <a class="sub" href="#optionen">Strategische Optionen</a>
+        <a class="sub" href="#opportunitaet">Opportunitätskosten</a>
+        <a href="#schluss"><span class="n">4</span>Schluss und nächste Schritte</a>
+        <a href="#anhang"><span class="n">5</span>Anhang</a>
+        <a class="sub" href="#rechenweg">A · Rechenweg</a>
+        <a class="sub" href="#quellen">B · Quellenverzeichnis</a>
+      </nav>
+      <div style="border-top: 1px solid #F1F5F9; padding: 10px 10px 0; display: flex; flex-direction: column; gap: 6px">
+        <span class="lbl">Legende</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155"><span class="ck ck-ok" aria-hidden="true"></span>Eingabe, verifiziert</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155"><span class="ck ck-as" aria-hidden="true"></span>Eingabe, Annahme</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155"><span class="fx" aria-hidden="true">=</span>berechnet</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155"><span class="ref" style="vertical-align: baseline; font-size: 11px">[3]</span>Quelle im Verzeichnis</span>
+      </div>
+    </aside>
+
+    <!-- Dokument -->
+    <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 48px">
+
+      <!-- 0 Vorwort -->
+      <section class="sec" id="vorwort">
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px">
+          <div style="display: flex; flex-direction: column; gap: 8px; max-width: 760px">
+            <span class="lbl">Business Case · Version 0.4 · Entwurf</span>
+            <h1 style="margin: 0; font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -0.02em">Kontomodelle Kommerz Neu: drei Kernmodelle und ein Digitalmodell</h1>
+            <p class="p">Dieses Dokument begründet die Ablösung der heutigen elf Kommerz-Tarife durch vier Modelle. Es folgt dem Standardaufbau eines Business Case<a class="ref" href="#q11">[11]</a>: Briefing für Entscheider, Einleitung, Analyse, Schluss, Anhang. Jede Zahl ist entweder eine Eingabe mit Status und Quelle oder daraus berechnet. Alle Werte gelten für das Szenario „Basis 2027“ aus dem Konfigurator.</p>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: #64748B">Szenario
+            <select style="height: 40px; padding: 0 12px; border: 1px solid #CBD5E1; border-radius: 10px; background: #fff; font: inherit; font-size: 14px; color: #0F172A; min-width: 200px">
+              <option>Basis 2027</option>
+              <option>Konservativ</option>
+              <option>Aggressiv Digital</option>
+            </select>
+          </label>
+        </div>
+        <div class="card" style="padding: 14px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; font-size: 13px">
+          <div><span class="lbl">Auftraggeber</span><div style="margin-top: 2px; font-weight: 600">Bereichsleitung Kommerzkunden</div></div>
+          <div><span class="lbl">Erstellt von</span><div style="margin-top: 2px; font-weight: 600">Projektteam Kontomodelle · M. Huber</div></div>
+          <div><span class="lbl">Stand</span><div style="margin-top: 2px; font-weight: 600">12.11.2026</div></div>
+          <div><span class="lbl">Entscheidung geplant</span><div style="margin-top: 2px; font-weight: 600">Vorstandssitzung Q1 2027</div></div>
+          <div><span class="lbl">Belastbarkeit</span><div style="margin-top: 2px; font-weight: 600">14 von 22 Eingaben verifiziert · 64 %</div></div>
+        </div>
+      </section>
+
+      <!-- 1 Executive Briefing -->
+      <section class="sec" id="executive">
+        <h2><span class="n">1</span>Executive Briefing</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+          <div class="card" id="empfehlung" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; border-color: #1A56DB; scroll-margin-top: 24px">
+            <span class="lbl" style="color: #1A56DB">1.1 Empfehlung</span>
+            <h3 style="font-size: 18px">Option B einführen: 3 + 1 Modelle ab Q3 2027</h3>
+            <p class="p" style="font-size: 14px; line-height: 21px">Kommerz Start, Klassik und Premium ersetzen die elf heutigen Tarife; Kommerz Digital kommt als reines Online-Modell dazu. Preise 9,90 / 19,90 / 39,90 / 4,90 € im Monat. Migration der Bestandskunden in zwei Wellen bis Q4 2027.</p>
+          </div>
+          <div class="card" id="ergebnisse" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+            <span class="lbl">1.2 Ergebnisse in Kürze</span>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+              <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #475569">Ertragsdelta p. a. ab 2028</span><span style="font-weight: 700; color: #1A56DB">+ 6,8 Mio €</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #475569">Barwert 5 Jahre, 8 % Zins</span><span style="font-weight: 700">19,6 Mio €</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #475569">Einmalkosten</span><span style="font-weight: 700">3,3 Mio €</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #475569">Amortisation</span><span style="font-weight: 700">14 Monate</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #475569">Kunden teurer als heute</span><span style="font-weight: 700">23 %</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #475569">Abwanderungsrisiko</span><span style="font-weight: 700">4 % · 1,0 Mio €</span></div>
+            </div>
+          </div>
+          <div class="card" id="entscheidung" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; background: #0F172A; color: #fff; border-color: #0F172A; scroll-margin-top: 24px">
+            <span class="lbl" style="color: #94A3B8">1.3 Zu treffende Entscheidung</span>
+            <ol style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 21px; display: flex; flex-direction: column; gap: 6px">
+              <li>Freigabe der vier Modelle und Preispunkte</li>
+              <li>Investitionsbudget 3,3 Mio € für IT, Migration und Kommunikation</li>
+              <li>Mandat, die 8 offenen Annahmen bis zur Vorstandssitzung zu verifizieren</li>
+            </ol>
+            <div style="font-size: 12px; color: #94A3B8; padding-top: 8px; border-top: 1px solid #1E293B">Entscheider: Vorstand Firmenkunden · Termin Q1 2027</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 Einleitung -->
+      <section class="sec" id="einleitung">
+        <h2><span class="n">2</span>Einleitung</h2>
+
+        <div id="treiber" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>2.1 Treiber</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+            <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700; font-size: 14px">Komplexität</span><span style="font-size: 13px; line-height: 19px; color: #475569">Elf Tarife mit historisch gewachsenen Konditionen<a class="ref" href="#q1">[1]</a>; Beratung und Pricing sind kaum noch erklärbar.</span></div>
+            <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700; font-size: 14px">Abwanderung online</span><span style="font-size: 13px; line-height: 19px; color: #475569">13 % der Kunden nutzen keine Filiale mehr<a class="ref" href="#q4">[4]</a>; Neobanken bieten Konten ab 8,90 €<a class="ref" href="#q6">[6]</a>.</span></div>
+            <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700; font-size: 14px">Kostendeckung</span><span style="font-size: 13px; line-height: 19px; color: #475569">Vielnutzer sind heute quersubventioniert; die Stückkosten je Buchung<a class="ref" href="#q2">[2]</a> werden in einigen Tarifen nicht gedeckt.</span></div>
+            <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700; font-size: 14px">Ertragsziel</span><span style="font-size: 13px; line-height: 19px; color: #475569">Zielmarge 38 % je Kernmodell laut Vorstandsbeschluss<a class="ref" href="#q5">[5]</a>.</span></div>
+          </div>
+        </div>
+
+        <div id="umfang" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>2.2 Umfang</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px">
+            <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+              <span class="lbl" style="color: #153FA3">Im Umfang</span>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 20px; color: #334155"><li>184.300 Kommerzkunden in Österreich<a class="ref" href="#q1">[1]</a></li><li>Kontoführung, Buchungen, Debitkarten, Beratung</li><li>Pricing, Leistungsbündel, Migration der Bestandskunden</li></ul>
+            </div>
+            <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+              <span class="lbl">Nicht im Umfang</span>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 20px; color: #334155"><li>Kreditprodukte, Zinsen, Fremdwährungskonten</li><li>Großkunden mit Individualvereinbarung</li><li>Privatkundenmodelle</li></ul>
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch">
+            <div class="step"><div style="font-size: 11px; font-weight: 700; color: #1A56DB">01</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Ist-Analyse</div><div style="font-size: 12px; line-height: 17px; color: #64748B; margin-top: 4px">Bestand, Ertrag, Kosten je Leistung</div></div>
+            <div class="step"><div style="font-size: 11px; font-weight: 700; color: #1A56DB">02</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Segmentierung</div><div style="font-size: 12px; line-height: 17px; color: #64748B; margin-top: 4px">Vier Cluster nach Nutzung und Kanal</div></div>
+            <div class="step"><div style="font-size: 11px; font-weight: 700; color: #1A56DB">03</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Modellbildung 3 + 1</div><div style="font-size: 12px; line-height: 17px; color: #64748B; margin-top: 4px">Je Cluster ein Leistungsbündel</div></div>
+            <div class="step"><div style="font-size: 11px; font-weight: 700; color: #1A56DB">04</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Preisbildung</div><div style="font-size: 12px; line-height: 17px; color: #64748B; margin-top: 4px">Kosten ÷ (1 − Marge), Marktcheck</div></div>
+            <div class="step"><div style="font-size: 11px; font-weight: 700; color: #1A56DB">05</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Marktwirkung</div><div style="font-size: 12px; line-height: 17px; color: #64748B; margin-top: 4px">Migration, Ertrag, Abwanderung</div></div>
+          </div>
+          <span style="font-size: 12px; color: #64748B">Der vollständige Rechenweg steht in Anhang A, die Rechnung für ein einzelnes Modell in der <a href="BusinessCaseModell.html">Modellsicht Klassik</a>.</span>
+        </div>
+
+        <div id="kennzahlen" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>2.3 Finanzkennzahlen</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+            <div class="card kpi" style="border-style: dashed; border-color: #1A56DB; background: #F8FAFC"><span class="k">Ertragsdelta p. a.<span class="fx" aria-label="berechnet">=</span></span><span class="b" style="color: #1A56DB">+ 6,8 Mio €</span><span class="s">37,5 neu − 30,7 heute</span></div>
+            <div class="card kpi" style="border-style: dashed; border-color: #94A3B8; background: #F8FAFC"><span class="k">Barwert (NPV)<span class="fx" aria-label="berechnet">=</span></span><span class="b">19,6 Mio €</span><span class="s">5 Jahre · Zins 8 %<a class="ref" href="#annahmen">[A]</a></span></div>
+            <div class="card kpi" style="border-style: dashed; border-color: #94A3B8; background: #F8FAFC"><span class="k">Amortisation<span class="fx" aria-label="berechnet">=</span></span><span class="b">14 Monate</span><span class="s">kumuliert positiv ab Q1 2028</span></div>
+            <div class="card kpi" style="border-style: dashed; border-color: #94A3B8; background: #F8FAFC"><span class="k">Rendite auf Einmalkosten<span class="fx" aria-label="berechnet">=</span></span><span class="b">7,8 ×</span><span class="s">25,8 Mio kumuliert ÷ 3,3 Mio</span></div>
+            <div class="card kpi"><span class="k">Ertrag heute p. a.<span class="ck ck-ok" aria-label="verifiziert"></span></span><span class="b">30,7 Mio €</span><span class="s">Abschluss 2025<a class="ref" href="#q9">[9]</a></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 Analyse -->
+      <section class="sec" id="analyse">
+        <h2><span class="n">3</span>Analyse</h2>
+
+        <!-- 3.1 Annahmen -->
+        <div id="annahmen" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h3>3.1 Annahmen und Eingaben</h3><a href="Konfigurator.html" style="font-size: 13px; font-weight: 600; text-decoration: none">Im Konfigurator ändern</a></div>
+          <p class="p" style="font-size: 14px; line-height: 21px">Alle 22 Eingaben des Business Case. Verifizierte Eingaben verweisen auf ihre Quelle im Anhang; Annahmen sind Schätzungen des Teams und im Konfigurator teils als Spanne mit Schieberegler hinterlegt.</p>
+          <div class="card" style="overflow-x: auto">
+            <table class="tbl" style="min-width: 760px">
+              <thead><tr><th>Eingabe</th><th class="num">Wert</th><th>Status</th><th>Quelle</th><th>Wirkt auf</th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight: 600">Kommerzkunden gesamt</td><td class="num">184.300</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q1" style="text-decoration: none; font-size: 13px">[1] Bestand 2025</a></td><td style="color: #475569; font-size: 13px">Kunden je Modell, Ertrag</td></tr>
+                <tr><td style="font-weight: 600">Ø Ertrag je Kunde heute</td><td class="num">13,90 € / Monat</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q9" style="text-decoration: none; font-size: 13px">[9] Abschluss 2025</a></td><td style="color: #475569; font-size: 13px">Ertrag heute</td></tr>
+                <tr><td style="font-weight: 600">Kosten je Buchung</td><td class="num">0,11 €</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q2" style="text-decoration: none; font-size: 13px">[2] Stückkosten ZV</a></td><td style="color: #475569; font-size: 13px">Kostenbasis aller Modelle</td></tr>
+                <tr><td style="font-weight: 600">Kosten je Karte</td><td class="num">0,60 € / Monat</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q2" style="text-decoration: none; font-size: 13px">[2] Stückkosten ZV</a></td><td style="color: #475569; font-size: 13px">Kostenbasis</td></tr>
+                <tr><td style="font-weight: 600">Kosten je Beratungsstunde</td><td class="num">84 €</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td style="color: #9A3412; font-size: 13px">Spanne 50–120 €</td><td style="color: #475569; font-size: 13px">Kostenbasis Klassik, Premium</td></tr>
+                <tr><td style="font-weight: 600">Schwelle Wenignutzer</td><td class="num">30 Buchungen</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q3" style="text-decoration: none; font-size: 13px">[3] Clusteranalyse</a></td><td style="color: #475569; font-size: 13px">Clustergrößen</td></tr>
+                <tr><td style="font-weight: 600">Schwelle Vielnutzer</td><td class="num">150 Buchungen</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td style="color: #9A3412; font-size: 13px">Spanne 80–250</td><td style="color: #475569; font-size: 13px">Premium-Anteil</td></tr>
+                <tr><td style="font-weight: 600">Anteil reine Online-Kunden</td><td class="num">13 %</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q4" style="text-decoration: none; font-size: 13px">[4] Kanalnutzung 2026</a></td><td style="color: #475569; font-size: 13px">Digital-Potenzial</td></tr>
+                <tr><td style="font-weight: 600">Zielmarge Kernmodelle</td><td class="num">38 %</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q5" style="text-decoration: none; font-size: 13px">[5] Zielmargen Vorstand</a></td><td style="color: #475569; font-size: 13px">Preis Start, Klassik</td></tr>
+                <tr><td style="font-weight: 600">Zielmarge Premium</td><td class="num">33 %</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td style="color: #9A3412; font-size: 13px">Spanne 20–45 %</td><td style="color: #475569; font-size: 13px">Preis Premium</td></tr>
+                <tr><td style="font-weight: 600">Marktmediane je Modell</td><td class="num">10,50 · 20,70 · 36,00 · 5,00 €</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q6" style="text-decoration: none; font-size: 13px">[6] Wettbewerb Q3 2026</a></td><td style="color: #475569; font-size: 13px">Marktcheck, Position</td></tr>
+                <tr><td style="font-weight: 600">Migrationsregel</td><td class="num">günstigstes passendes Modell</td><td><span class="ck ck-ok" aria-label="verifiziert"></span></td><td><a href="#q7" style="text-decoration: none; font-size: 13px">[7] Migrationslogik</a></td><td style="color: #475569; font-size: 13px">Kunden je Modell</td></tr>
+                <tr><td style="font-weight: 600">Abwanderung bei Verteuerung</td><td class="num">4 %</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td style="color: #9A3412; font-size: 13px">Spanne 0–15 %</td><td style="color: #475569; font-size: 13px">Risiko, Ertrag neu</td></tr>
+                <tr><td style="font-weight: 600">Rückgewinn durch Digital</td><td class="num">2.400 Kunden</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td style="color: #9A3412; font-size: 13px">Spanne 0–6.000</td><td style="color: #475569; font-size: 13px">Ertrag Digital</td></tr>
+                <tr><td style="font-weight: 600">Einmalkosten IT und Prozesse</td><td class="num">2,1 Mio €</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td><a href="#q10" style="text-decoration: none; font-size: 13px; color: #9A3412">[10] IT-Grobschätzung, offen</a></td><td style="color: #475569; font-size: 13px">Cashflow, Amortisation</td></tr>
+                <tr><td style="font-weight: 600">Kalkulationszins</td><td class="num">8 %</td><td><span class="ck ck-as" aria-label="Annahme"></span></td><td style="color: #9A3412; font-size: 13px">Konzernvorgabe anfragen</td><td style="color: #475569; font-size: 13px">Barwert</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <span style="font-size: 12px; color: #64748B">Gekürzt auf die 16 wirksamsten Eingaben; alle 22 im Konfigurator.</span>
+        </div>
+
+        <!-- 3.2 Cashflow -->
+        <div id="cashflow" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap"><h3>3.2 Cashflow und Barwert</h3><span class="calc" style="padding: 3px 9px"><span class="fx" aria-hidden="true">=</span><b>berechnet</b></span><span style="font-size: 13px; color: #64748B">Mio €, Start der neuen Modelle Q3 2027</span></div>
+          <div class="card" style="overflow-x: auto">
+            <table class="tbl" style="min-width: 720px">
+              <thead><tr><th>Position</th><th class="num">2027</th><th class="num">2028</th><th class="num">2029</th><th class="num">2030</th><th class="num">2031</th><th class="num" style="background: #F8FAFC">Summe</th></tr></thead>
+              <tbody>
+                <tr><td>Mehrertrag Kontoführung</td><td class="num">+ 2,6</td><td class="num">+ 6,8</td><td class="num">+ 7,0</td><td class="num">+ 7,2</td><td class="num">+ 7,3</td><td class="num c">+ 30,9</td></tr>
+                <tr><td>Einmalkosten<a class="ref" href="#kosten">[3.3]</a></td><td class="num" style="color: #9A3412">− 3,3</td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td class="num c">− 3,3</td></tr>
+                <tr><td>Laufende Mehrkosten Digital-Support</td><td class="num" style="color: #9A3412">− 0,2</td><td class="num" style="color: #9A3412">− 0,4</td><td class="num" style="color: #9A3412">− 0,4</td><td class="num" style="color: #9A3412">− 0,4</td><td class="num" style="color: #9A3412">− 0,4</td><td class="num c">− 1,8</td></tr>
+                <tr class="sum"><td>Netto-Cashflow</td><td class="num" style="color: #9A3412">− 0,9</td><td class="num">+ 6,4</td><td class="num">+ 6,6</td><td class="num">+ 6,8</td><td class="num">+ 6,9</td><td class="num">+ 25,8</td></tr>
+                <tr><td style="color: #475569">Kumuliert</td><td class="num" style="color: #9A3412">− 0,9</td><td class="num">+ 5,5</td><td class="num">+ 12,1</td><td class="num">+ 18,9</td><td class="num">+ 25,8</td><td class="num c"></td></tr>
+                <tr><td style="color: #475569">Abgezinst 8 %<a class="ref" href="#annahmen">[A]</a></td><td class="num" style="color: #9A3412">− 0,8</td><td class="num">+ 5,5</td><td class="num">+ 5,2</td><td class="num">+ 5,0</td><td class="num">+ 4,7</td><td class="num c" style="font-weight: 700; color: #1A56DB">NPV 19,6</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figure class="card" style="margin: 0; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px">
+            <figcaption style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px"><span style="font-size: 14px; font-weight: 700">Kumulierter Netto-Cashflow</span><span style="font-size: 12px; color: #64748B">Mio € · Amortisation nach 14 Monaten</span></figcaption>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+              <div style="display: grid; grid-template-columns: 56px 1fr 60px; gap: 10px; align-items: center"><span style="color: #475569">2027</span><div style="display: flex; justify-content: flex-start"><div class="bar" style="width: 3.5%; background: #C2410C; border-radius: 4px 0 0 4px" title="2027: −0,9 Mio €"></div></div><span style="text-align: right; font-weight: 600; color: #9A3412">− 0,9</span></div>
+              <div style="display: grid; grid-template-columns: 56px 1fr 60px; gap: 10px; align-items: center"><span style="color: #475569">2028</span><div class="bar" style="width: 21.3%; background: #1A56DB" title="2028: +5,5 Mio €"></div><span style="text-align: right; font-weight: 600">+ 5,5</span></div>
+              <div style="display: grid; grid-template-columns: 56px 1fr 60px; gap: 10px; align-items: center"><span style="color: #475569">2029</span><div class="bar" style="width: 46.9%; background: #1A56DB" title="2029: +12,1 Mio €"></div><span style="text-align: right; font-weight: 600">+ 12,1</span></div>
+              <div style="display: grid; grid-template-columns: 56px 1fr 60px; gap: 10px; align-items: center"><span style="color: #475569">2030</span><div class="bar" style="width: 73.3%; background: #1A56DB" title="2030: +18,9 Mio €"></div><span style="text-align: right; font-weight: 600">+ 18,9</span></div>
+              <div style="display: grid; grid-template-columns: 56px 1fr 60px; gap: 10px; align-items: center"><span style="color: #475569">2031</span><div class="bar" style="width: 100%; background: #1A56DB" title="2031: +25,8 Mio €"></div><span style="text-align: right; font-weight: 600">+ 25,8</span></div>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 3.3 Kosten -->
+        <div id="kosten" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>3.3 Kosten</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px">
+            <div class="card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+              <span class="lbl">Einmalkosten · 3,3 Mio €</span>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+                <div style="display: grid; grid-template-columns: 1fr 100px 70px; gap: 10px; align-items: center"><span style="display: flex; align-items: center; gap: 8px"><span class="ck ck-as" aria-label="Annahme"></span>IT: Produkt- und Preislogik, Migration<a class="ref" href="#q10">[10]</a></span><div class="bar" style="width: 100%; background: #0F172A"></div><span style="text-align: right; font-weight: 600">2,1</span></div>
+                <div style="display: grid; grid-template-columns: 1fr 100px 70px; gap: 10px; align-items: center"><span style="display: flex; align-items: center; gap: 8px"><span class="ck ck-as" aria-label="Annahme"></span>Kundenkommunikation, zwei Wellen</span><div class="bar" style="width: 43%; background: #0F172A"></div><span style="text-align: right; font-weight: 600">0,9</span></div>
+                <div style="display: grid; grid-template-columns: 1fr 100px 70px; gap: 10px; align-items: center"><span style="display: flex; align-items: center; gap: 8px"><span class="ck ck-as" aria-label="Annahme"></span>Schulung Vertrieb und Service</span><div class="bar" style="width: 14%; background: #0F172A"></div><span style="text-align: right; font-weight: 600">0,3</span></div>
+              </div>
+            </div>
+            <div class="card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+              <span class="lbl">Laufende Kosten je Monat und Kunde</span>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+                <div style="display: flex; justify-content: space-between; gap: 12px"><span style="display: flex; align-items: center; gap: 8px"><span class="fx" aria-hidden="true">=</span>Kostenbasis Start</span><span style="font-weight: 600">6,10 €</span></div>
+                <div style="display: flex; justify-content: space-between; gap: 12px"><span style="display: flex; align-items: center; gap: 8px"><span class="fx" aria-hidden="true">=</span>Kostenbasis Klassik</span><span style="font-weight: 600">12,40 €</span></div>
+                <div style="display: flex; justify-content: space-between; gap: 12px"><span style="display: flex; align-items: center; gap: 8px"><span class="fx" aria-hidden="true">=</span>Kostenbasis Premium</span><span style="font-weight: 600">26,80 €</span></div>
+                <div style="display: flex; justify-content: space-between; gap: 12px"><span style="display: flex; align-items: center; gap: 8px"><span class="fx" aria-hidden="true">=</span>Kostenbasis Digital</span><span style="font-weight: 600">3,10 €</span></div>
+                <div style="display: flex; justify-content: space-between; gap: 12px; padding-top: 8px; border-top: 1px solid #F1F5F9"><span style="display: flex; align-items: center; gap: 8px"><span class="ck ck-as" aria-label="Annahme"></span>Digital-Support zusätzlich p. a.</span><span style="font-weight: 600">0,4 Mio €</span></div>
+              </div>
+              <span style="font-size: 12px; color: #64748B">Aus Buchungen × 0,11 €<a class="ref" href="#q2">[2]</a>, Karten × 0,60 €<a class="ref" href="#q2">[2]</a> und Beratungsstunden × 84 €.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.4 Nutzen -->
+        <div id="nutzen" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px">
+            <h3>3.4 Nutzen</h3>
+            <nav class="seg" aria-label="Sicht je Modell">
+              <a class="on" href="BusinessCase.html" aria-current="page">Gesamt</a>
+              <span title="Im Mock-up nur Klassik ausgearbeitet">Start</span>
+              <a href="BusinessCaseModell.html">Klassik</a>
+              <span title="Im Mock-up nur Klassik ausgearbeitet">Premium</span>
+              <span title="Im Mock-up nur Klassik ausgearbeitet">Digital (+1)</span>
+            </nav>
+          </div>
+          <div class="card" style="overflow-x: auto">
+            <table class="tbl" style="min-width: 900px">
+              <thead>
+                <tr>
+                  <th>Modell</th>
+                  <th class="num">Kostenbasis<span class="lbl">Eingabe / berechnet</span></th>
+                  <th class="num">Zielmarge<span class="lbl">Eingabe</span></th>
+                  <th class="num" style="background: #F8FAFC">Rechnerisch<span class="lbl">= kosten ÷ (1 − marge)</span></th>
+                  <th class="num">Marktmedian<span class="lbl">Eingabe</span></th>
+                  <th class="num" style="background: #F8FAFC">Vorschlag<span class="lbl">= gerundet</span></th>
+                  <th class="num" style="background: #F8FAFC">Kunden<span class="lbl">= Migration</span></th>
+                  <th class="num" style="background: #F8FAFC">Ertrag neu p. a.<span class="lbl">= Kunden × Preis × 12</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="font-weight: 600">Kommerz Start</td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">6,10 € <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">38 % <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num c">9,84 €</td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">10,50 € <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num c" style="font-weight: 700; color: #0F172A">9,90 €</td><td class="num c">57.100</td><td class="num c">5,1 Mio €</td></tr>
+                <tr><td style="font-weight: 600"><a href="BusinessCaseModell.html" style="text-decoration: none; color: #0F172A">Kommerz Klassik</a></td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">12,40 € <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">38 % <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num c">20,00 €</td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">20,70 € <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num c" style="font-weight: 700; color: #0F172A">19,90 €</td><td class="num c">81.100</td><td class="num c">22,4 Mio €</td></tr>
+                <tr><td style="font-weight: 600">Kommerz Premium</td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">26,80 € <span class="ck ck-as" aria-label="Annahme"></span></span></td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">33 % <span class="ck ck-as" aria-label="Annahme"></span></span></td><td class="num c">40,00 €</td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">36,00 € <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num c" style="font-weight: 700; color: #0F172A">39,90 €</td><td class="num c">22.100</td><td class="num c">9,6 Mio €</td></tr>
+                <tr><td style="font-weight: 600">Kommerz Digital <span style="font-weight: 500; color: #64748B">(+1)</span></td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">3,10 € <span class="ck ck-as" aria-label="Annahme"></span></span></td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">37 % <span class="ck ck-as" aria-label="Annahme"></span></span></td><td class="num c">4,92 €</td><td class="num"><span style="display: inline-flex; gap: 8px; align-items: center">5,00 € <span class="ck ck-ok" aria-label="verifiziert"></span></span></td><td class="num c" style="font-weight: 700; color: #0F172A">4,90 €</td><td class="num c">16.600</td><td class="num c">1,4 Mio €</td></tr>
+                <tr class="sum"><td>Summe</td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">176.900</td><td class="num">38,5 Mio €</td></tr>
+                <tr><td style="color: #475569">abzüglich Abwanderungsrisiko 4 %</td><td colspan="5"></td><td class="num" style="color: #9A3412">− 7.400</td><td class="num" style="color: #9A3412">− 1,0 Mio €</td></tr>
+                <tr class="sum"><td>Ertrag neu</td><td colspan="5"></td><td class="num">169.500</td><td class="num" style="color: #1A56DB">37,5 Mio €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px">
+            <figure class="card" style="margin: 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+              <figcaption style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px"><span style="font-size: 14px; font-weight: 700">Ertrag je Modell, heute und neu</span><span style="display: flex; gap: 12px; font-size: 12px; color: #475569"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #C2410C"></span>Heute</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: #1A56DB"></span>Neu</span></span></figcaption>
+              <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12px">
+                <div style="display: grid; grid-template-columns: 90px 1fr; gap: 10px; align-items: center"><span style="font-weight: 600">Start</span><div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 18.8%; background: #C2410C" title="Heute 4,2"></div>4,2</div><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 22.8%; background: #1A56DB" title="Neu 5,1"></div>5,1</div></div></div>
+                <div style="display: grid; grid-template-columns: 90px 1fr; gap: 10px; align-items: center"><span style="font-weight: 600">Klassik</span><div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 83%; background: #C2410C" title="Heute 18,6"></div>18,6</div><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 100%; background: #1A56DB" title="Neu 22,4"></div>22,4</div></div></div>
+                <div style="display: grid; grid-template-columns: 90px 1fr; gap: 10px; align-items: center"><span style="font-weight: 600">Premium</span><div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 35.3%; background: #C2410C" title="Heute 7,9"></div>7,9</div><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 42.9%; background: #1A56DB" title="Neu 9,6"></div>9,6</div></div></div>
+                <div style="display: grid; grid-template-columns: 90px 1fr; gap: 10px; align-items: center"><span style="font-weight: 600">Digital (+1)</span><div style="display: flex; flex-direction: column; gap: 2px"><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 0; background: #C2410C" title="Heute 0, neu"></div>0 · neu</div><div style="display: flex; align-items: center; gap: 6px"><div class="bar" style="width: 6.3%; background: #1A56DB" title="Neu 1,4"></div>1,4</div></div></div>
+              </div>
+            </figure>
+            <div class="card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+              <span class="lbl">Nicht monetärer Nutzen</span>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 20px; color: #334155; display: flex; flex-direction: column; gap: 4px">
+                <li>Vier statt elf Tarife: Beratung und Pricing werden erklärbar, Schulungs- und Pflegeaufwand sinkt.</li>
+                <li>38 % der Kunden zahlen weniger als heute; Argument in der Migrationskommunikation.</li>
+                <li>Digital hält online-affine Kunden im Haus und ist Einstieg für Gründer.</li>
+                <li>Klare Kostendeckung je Modell; Quersubvention der Vielnutzer endet.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.5 Risiken -->
+        <div id="risiken" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>3.5 Risiken</h3>
+          <div class="card" style="overflow-x: auto">
+            <table class="tbl" style="min-width: 820px">
+              <thead><tr><th>Risiko</th><th>Eintritt</th><th>Wirkung</th><th class="num">Wert bei Eintritt</th><th>Gegenmaßnahme</th><th>Verantwortlich</th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight: 600">Abwanderung der verteuerten Kunden höher als 4 %</td><td><span class="chip chip-as">mittel</span></td><td><span class="chip chip-as">hoch</span></td><td class="num">− 0,9 Mio € p. a. je 4 Punkte</td><td style="font-size: 13px; color: #475569">Übergangsrabatt 6 Monate, persönliche Ansprache ab 5 € Mehrpreis</td><td style="font-size: 13px">Vertrieb</td></tr>
+                <tr><td style="font-weight: 600">Digital ohne Filialleistung regulatorisch nicht zulässig</td><td><span class="chip" style="background: #F1F5F9; color: #334155">niedrig</span></td><td><span class="chip chip-as">mittel</span></td><td class="num">− 1,4 Mio € p. a.</td><td style="font-size: 13px; color: #475569">Rechtsprüfung vor Entscheidung; Rückfall: Digital mit Filial-Grundleistung zu 6,90 €</td><td style="font-size: 13px">Recht</td></tr>
+                <tr><td style="font-weight: 600">IT-Umsetzung verzögert Start über Q3 2027 hinaus</td><td><span class="chip chip-as">mittel</span></td><td><span class="chip chip-as">mittel</span></td><td class="num">− 0,6 Mio € je Quartal</td><td style="font-size: 13px; color: #475569">Grobschätzung<a class="ref" href="#q10">[10]</a> bis Januar verifizieren, Migration entkoppelt vom Neukundenstart</td><td style="font-size: 13px">IT</td></tr>
+                <tr><td style="font-weight: 600">Wettbewerber senken Preise nach Ankündigung</td><td><span class="chip" style="background: #F1F5F9; color: #334155">niedrig</span></td><td><span class="chip chip-as">mittel</span></td><td class="num">− 0,4 Mio € p. a.</td><td style="font-size: 13px; color: #475569">Klassik bleibt 4 % unter Median; Preisreview nach 12 Monaten</td><td style="font-size: 13px">Produkt</td></tr>
+                <tr><td style="font-weight: 600">Kannibalisierung: Klassik-Kunden wechseln zu Digital</td><td><span class="chip chip-as">mittel</span></td><td><span class="chip" style="background: #F1F5F9; color: #334155">niedrig</span></td><td class="num">− 0,2 Mio € p. a.</td><td style="font-size: 13px; color: #475569">Digital ohne Filialleistung und mit 20 Buchungen begrenzt</td><td style="font-size: 13px">Produkt</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.6 Umsetzungsplan -->
+        <div id="umsetzung" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>3.6 Umsetzungsplan</h3>
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; gap: 8px">
+              <div class="ms"><div class="t" style="background: #CBD5E1"></div><span style="font-size: 12px; font-weight: 700; color: #475569">Q1 2027</span><span style="font-size: 13px; font-weight: 600">Entscheidung</span><span style="font-size: 12px; color: #64748B; line-height: 17px">Vorstand genehmigt Modelle, Preise, Budget</span></div>
+              <div class="ms"><div class="t" style="background: #93C5FD"></div><span style="font-size: 12px; font-weight: 700; color: #475569">Q2 2027</span><span style="font-size: 13px; font-weight: 600">Umsetzung</span><span style="font-size: 12px; color: #64748B; line-height: 17px">IT-Produktlogik, Schulung, Kommunikationspaket</span></div>
+              <div class="ms"><div class="t" style="background: #1A56DB"></div><span style="font-size: 12px; font-weight: 700; color: #475569">Q3 2027</span><span style="font-size: 13px; font-weight: 600">Start</span><span style="font-size: 12px; color: #64748B; line-height: 17px">Neukunden auf 3 + 1; Migration Welle 1: Kunden, die günstiger werden</span></div>
+              <div class="ms"><div class="t" style="background: #1A56DB"></div><span style="font-size: 12px; font-weight: 700; color: #475569">Q4 2027</span><span style="font-size: 13px; font-weight: 600">Migration Welle 2</span><span style="font-size: 12px; color: #64748B; line-height: 17px">Kunden mit Mehrpreis, persönliche Ansprache, Übergangsrabatt</span></div>
+              <div class="ms"><div class="t" style="background: #0F172A"></div><span style="font-size: 12px; font-weight: 700; color: #475569">Q1 2028</span><span style="font-size: 13px; font-weight: 600">Abschluss</span><span style="font-size: 12px; color: #64748B; line-height: 17px">Alttarife geschlossen; Preisreview nach 12 Monaten terminiert</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.7 Strategische Optionen -->
+        <div id="optionen" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>3.7 Strategische Optionen</h3>
+          <div class="card" style="overflow-x: auto">
+            <table class="tbl" style="min-width: 820px">
+              <thead><tr><th>Option</th><th>Beschreibung</th><th class="num" style="background: #F8FAFC">Ertragsdelta p. a.</th><th class="num" style="background: #F8FAFC">Einmalkosten</th><th class="num" style="background: #F8FAFC">NPV 5 J.</th><th>Bewertung</th></tr></thead>
+              <tbody>
+                <tr><td style="font-weight: 600">0 · Status quo</td><td style="font-size: 13px; color: #475569">Elf Tarife bleiben, keine Investition</td><td class="num c">0</td><td class="num c">0</td><td class="num c">0</td><td style="font-size: 13px; color: #475569">Abwanderung online setzt sich fort, Komplexität bleibt</td></tr>
+                <tr><td style="font-weight: 600">A · Nur 3 Kernmodelle</td><td style="font-size: 13px; color: #475569">Start, Klassik, Premium ohne Digital</td><td class="num c">+ 5,4 Mio €</td><td class="num c">2,8 Mio €</td><td class="num c">15,6 Mio €</td><td style="font-size: 13px; color: #475569">Einfacher, aber keine Antwort auf Neobanken</td></tr>
+                <tr style="background: #F5F8FF"><td style="font-weight: 700"><span class="chip chip-ok" style="margin-right: 6px">Empfohlen</span>B · 3 + 1</td><td style="font-size: 13px; color: #475569">Drei Kernmodelle plus Kommerz Digital</td><td class="num c" style="font-weight: 700; color: #1A56DB; background: #EEF3FF">+ 6,8 Mio €</td><td class="num c" style="background: #EEF3FF">3,3 Mio €</td><td class="num c" style="font-weight: 700; background: #EEF3FF">19,6 Mio €</td><td style="font-size: 13px; color: #475569">Höchster Barwert, deckt alle vier Cluster ab</td></tr>
+                <tr><td style="font-weight: 600">C · Nur Digital ergänzen</td><td style="font-size: 13px; color: #475569">Alttarife bleiben, Digital kommt dazu</td><td class="num c">+ 1,1 Mio €</td><td class="num c">1,2 Mio €</td><td class="num c">2,9 Mio €</td><td style="font-size: 13px; color: #475569">Komplexität steigt auf zwölf Tarife</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3.8 Opportunitätskosten -->
+        <div id="opportunitaet" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>3.8 Opportunitätskosten</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+            <div class="card kpi" style="border-style: dashed; border-color: #94A3B8; background: #F8FAFC"><span class="k">Nichtstun kostet p. a.<span class="fx" aria-label="berechnet">=</span></span><span class="b" style="color: #9A3412">− 1,8 Mio €</span><span class="s">1,2 Mio € Abwanderung online<a class="ref" href="#q4">[4]</a> + 0,6 Mio € Pflege von elf Tarifen</span></div>
+            <div class="card kpi" style="border-style: dashed; border-color: #94A3B8; background: #F8FAFC"><span class="k">Verzicht auf Digital (Option A)<span class="fx" aria-label="berechnet">=</span></span><span class="b" style="color: #9A3412">− 1,4 Mio €</span><span class="s">Ertrag Digital p. a., ohne Kannibalisierung</span></div>
+            <div class="card kpi" style="border-style: dashed; border-color: #94A3B8; background: #F8FAFC"><span class="k">Jedes Quartal Verzögerung<span class="fx" aria-label="berechnet">=</span></span><span class="b" style="color: #9A3412">− 1,7 Mio €</span><span class="s">ein Viertel des Ertragsdeltas</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 Schluss -->
+      <section class="sec" id="schluss">
+        <h2><span class="n">4</span>Schluss, Empfehlung und nächste Schritte</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 10px">
+            <h3>Schlussfolgerung</h3>
+            <p class="p" style="font-size: 14px; line-height: 21px">Option B hat den höchsten Barwert und ist die einzige Option, die alle vier Kundencluster bedient. Das Ergebnis hängt vor allem an zwei Annahmen: der Abwanderung bei Verteuerung und den IT-Einmalkosten. Selbst bei 8 % Abwanderung und 3,0 Mio € IT-Kosten bleibt der Barwert über 15 Mio €.</p>
+          </div>
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 10px">
+            <h3>Nächste Schritte bis zur Entscheidung</h3>
+            <ol style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 20px; color: #334155; display: flex; flex-direction: column; gap: 6px">
+              <li>IT-Grobschätzung<a class="ref" href="#q10">[10]</a> in eine belastbare Schätzung überführen · IT · bis 15.01.2027</li>
+              <li>Rechtsprüfung Digital ohne Filialleistung · Recht · bis 31.01.2027</li>
+              <li>Abwanderungsannahme mit Churn-Analyse der Preisrunde 2023 belegen · Analytics · bis 31.01.2027</li>
+              <li>Kalkulationszins und Zielmarge Premium bestätigen · Controlling, Produkt · bis 15.02.2027</li>
+              <li>Vorstandsvorlage mit Version 1.0 dieses Dokuments · Projektteam · Q1 2027</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 Anhang -->
+      <section class="sec" id="anhang">
+        <h2><span class="n">5</span>Anhang</h2>
+
+        <div id="rechenweg" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <h3>A · Rechenweg in fünf Schritten</h3>
+          <div class="card" style="display: flex; flex-direction: column">
+            <div style="display: grid; grid-template-columns: 170px 1fr 1fr; gap: 16px; padding: 14px 20px; border-bottom: 1px solid #F1F5F9; align-items: start"><span class="lbl">01 Ist-Analyse</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Kunden</b><span class="v">184.300</span><a class="ref" href="#q1">[1]</a></span><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Ø Ertrag</b><span class="v">13,90 €</span><a class="ref" href="#q9">[9]</a></span><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Kosten/Buchung</b><span class="v">0,11 €</span><a class="ref" href="#q2">[2]</a></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Beratungsstunde</b><span class="v">84 €</span></span></div><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Ertrag heute</b><span class="v">30,7 Mio €</span></span><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Kostenbasis je Modell</b><span class="v">6,10 · 12,40 · 26,80 · 3,10 €</span></span></div></div>
+            <div style="display: grid; grid-template-columns: 170px 1fr 1fr; gap: 16px; padding: 14px 20px; border-bottom: 1px solid #F1F5F9; align-items: start"><span class="lbl">02 Segmentierung</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>12 Monate Buchungen</b><a class="ref" href="#q3">[3]</a></span><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Schwelle wenig</b><span class="v">30</span><a class="ref" href="#q3">[3]</a></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Schwelle viel</b><span class="v">150</span></span></div><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Cluster</b><span class="v">31 / 44 / 12 / 13 %</span></span></div></div>
+            <div style="display: grid; grid-template-columns: 170px 1fr 1fr; gap: 16px; padding: 14px 20px; border-bottom: 1px solid #F1F5F9; align-items: start"><span class="lbl">03 Modellbildung</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Leistungskatalog</b><a class="ref" href="#q8">[8]</a></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Digital ohne Filiale</b></span></div><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Zuordnung</b><span class="v">Wenig → Start · Regel → Klassik · Viel → Premium · Online → Digital</span></span></div></div>
+            <div style="display: grid; grid-template-columns: 170px 1fr 1fr; gap: 16px; padding: 14px 20px; border-bottom: 1px solid #F1F5F9; align-items: start"><span class="lbl">04 Preisbildung</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Marge Kern</b><span class="v">38 %</span><a class="ref" href="#q5">[5]</a></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Marge Premium</b><span class="v">33 %</span></span><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Marktmediane</b><a class="ref" href="#q6">[6]</a></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Rundung x,90</b></span></div><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Rechnerisch</b><span class="v">9,84 · 20,00 · 40,00 · 4,92 €</span></span><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Vorschlag</b><span class="v">9,90 · 19,90 · 39,90 · 4,90 €</span></span></div></div>
+            <div style="display: grid; grid-template-columns: 170px 1fr 1fr; gap: 16px; padding: 14px 20px; align-items: start"><span class="lbl">05 Marktwirkung</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fld"><span class="ck ck-ok" aria-label="verifiziert"></span><b>Migrationsregel</b><a class="ref" href="#q7">[7]</a></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Abwanderung</b><span class="v">4 %</span></span><span class="fld"><span class="ck ck-as" aria-label="Annahme"></span><b>Rückgewinn Digital</b><span class="v">2.400</span></span></div><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="calc"><span class="fx" aria-hidden="true">=</span><b>Ertrag neu</b><span class="v">37,5 Mio €</span></span><span class="calc" style="border-color: #1A56DB"><span class="fx" aria-hidden="true">=</span><b>Delta</b><span class="v" style="color: #1A56DB">+ 6,8 Mio €</span></span></div></div>
+          </div>
+        </div>
+
+        <div id="quellen" style="display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 24px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h3>B · Quellenverzeichnis</h3><span style="font-size: 13px; color: #64748B">Nummern wie im Text · Confluence-Links sind die Verifizierungen aus dem Konfigurator</span></div>
+          <div class="card" style="overflow-x: auto">
+            <div style="min-width: 900px">
+              <div class="ql" style="border-top: 0; padding-top: 14px"><span class="lbl">Nr.</span><span class="lbl">Titel</span><span class="lbl">Eigentümer</span><span class="lbl">Stand</span><span class="lbl">Link</span><span class="lbl">Status</span></div>
+              <div class="ql" id="q1"><span class="no">[1]</span><span style="font-weight: 600">Kundenbestand Kommerz 2025, Tarifverteilung</span><span style="color: #475569">Controlling</span><span style="color: #475569">02/2026</span><a class="l" href="https://confluence.intern/display/KKN/Bestand+2025">confluence.intern/display/KKN/Bestand+2025</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q2"><span class="no">[2]</span><span style="font-weight: 600">Stückkosten Zahlungsverkehr und Karten</span><span style="color: #475569">Controlling</span><span style="color: #475569">06/2026</span><a class="l" href="https://confluence.intern/display/KKN/Stueckkosten+ZV">confluence.intern/display/KKN/Stueckkosten+ZV</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q3"><span class="no">[3]</span><span style="font-weight: 600">Clusteranalyse Buchungsverhalten, 12 Monate</span><span style="color: #475569">Analytics</span><span style="color: #475569">08/2026</span><a class="l" href="https://confluence.intern/display/KKN/Clusteranalyse">confluence.intern/display/KKN/Clusteranalyse</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q4"><span class="no">[4]</span><span style="font-weight: 600">Kanalnutzung Kommerzkunden 2026</span><span style="color: #475569">Analytics</span><span style="color: #475569">09/2026</span><a class="l" href="https://confluence.intern/display/KKN/Kanalnutzung+2026">confluence.intern/display/KKN/Kanalnutzung+2026</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q5"><span class="no">[5]</span><span style="font-weight: 600">Zielmargen Kontoführung, Vorstandsbeschluss</span><span style="color: #475569">Produkt</span><span style="color: #475569">05/2026</span><a class="l" href="https://confluence.intern/display/KKN/Zielmargen+Vorstand">confluence.intern/display/KKN/Zielmargen+Vorstand</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q6"><span class="no">[6]</span><span style="font-weight: 600">Wettbewerbsvergleich Geschäftskonten Österreich Q3 2026</span><span style="color: #475569">Marktforschung</span><span style="color: #475569">10/2026</span><a class="l" href="https://confluence.intern/display/KKN/Wettbewerb+Q3+2026">confluence.intern/display/KKN/Wettbewerb+Q3+2026</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q7"><span class="no">[7]</span><span style="font-weight: 600">Migrationslogik Bestandskunden</span><span style="color: #475569">Produkt</span><span style="color: #475569">10/2026</span><a class="l" href="https://confluence.intern/display/KKN/Migrationslogik">confluence.intern/display/KKN/Migrationslogik</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q8"><span class="no">[8]</span><span style="font-weight: 600">Leistungskatalog je Modell, Produktboard</span><span style="color: #475569">Produkt</span><span style="color: #475569">09/2026</span><a class="l" href="https://confluence.intern/display/KKN/Leistungskatalog">confluence.intern/display/KKN/Leistungskatalog</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q9"><span class="no">[9]</span><span style="font-weight: 600">Ertrag Kontoführung Kommerz, Jahresabschluss 2025</span><span style="color: #475569">Controlling</span><span style="color: #475569">03/2026</span><a class="l" href="https://confluence.intern/display/KKN/Abschluss+2025">confluence.intern/display/KKN/Abschluss+2025</a><span class="chip chip-ok">verifiziert</span></div>
+              <div class="ql" id="q10"><span class="no">[10]</span><span style="font-weight: 600">IT-Grobschätzung Produkt- und Preislogik</span><span style="color: #475569">IT</span><span style="color: #475569">11/2026</span><span style="font-size: 12px; color: #9A3412">Seite angelegt, Schätzung noch nicht freigegeben</span><span class="chip chip-as">offen</span></div>
+              <div class="ql" id="q11"><span class="no">[11]</span><span style="font-weight: 600">Aufbau eines Business Case (Methodik)</span><span style="color: #475569">Wikipedia</span><span style="color: #475569">abgerufen 13.11.2026</span><a class="l" href="https://en.wikipedia.org/wiki/Business_case">en.wikipedia.org/wiki/Business_case</a><span class="chip" style="background: #F1F5F9; color: #334155">extern</span></div>
+            </div>
+          </div>
+          <span style="font-size: 12px; color: #64748B">Wird ein Feld im Konfigurator verifiziert, erscheint sein Confluence-Link automatisch hier und bekommt die nächste Nummer.</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E2E8F0; background: #fff">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 16px 24px; font-size: 13px; color: #64748B; display: flex; flex-wrap: wrap; gap: 8px 24px">
+      <span>Business Case v0.4 · Szenario „Basis 2027“ · 12.11.2026</span>
+      <span>Alle Beträge in Euro, netto</span>
+      <span style="margin-left: auto">Internes Arbeitsmittel · keine Kundenkommunikation</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Startseite – Die vier Modelle</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F9;color:#0F172A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1A56DB}a:hover{color:#153FA3}
+.nav a{text-decoration:none;color:#475569;padding:10px 4px;font-size:15px;font-weight:500;border-bottom:2px solid transparent}
+.nav a.on{color:#0F172A;border-bottom-color:#1A56DB;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;line-height:16px;white-space:nowrap}
+.chip-ok{background:#E8F0FE;color:#153FA3}
+.chip-as{background:#FEF0E6;color:#9A3412}
+.chip-neu{background:#0F172A;color:#fff}
+.card{background:#fff;border:1px solid #E2E8F0;border-radius:14px}
+.inc{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:9px 0;border-bottom:1px solid #F1F5F9}
+.inc:last-child{border-bottom:0}
+.inc span:last-child{font-weight:600;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;border:1px solid transparent}
+.btn-p{background:#1A56DB;color:#fff}.btn-p:hover{background:#153FA3;color:#fff}
+.btn-s{background:#fff;color:#0F172A;border-color:#CBD5E1}.btn-s:hover{color:#0F172A;background:#F8FAFC}
+.step{flex:1 1 180px;min-width:0;background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px}
+.arrow{align-self:center;color:#94A3B8;flex:0 0 auto}
+@media (max-width:720px){.hide-sm{display:none}}
+</style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+  <!-- Kopfzeile -->
+  <header style="background: #fff; border-bottom: 1px solid #E2E8F0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; min-height: 64px">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0">
+        <div style="width: 36px; height: 36px; border-radius: 9px; background: #1A56DB; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px">K</div>
+        <div>
+          <div style="font-size: 15px; font-weight: 700; line-height: 18px">Kontomodelle Kommerz Neu</div>
+          <div style="font-size: 12px; color: #64748B; line-height: 16px">Erste Bank Österreich · Projekt-Workspace</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Hauptnavigation" style="display: flex; gap: 24px; align-self: stretch; align-items: flex-end; padding-bottom: 0">
+        <a class="on" href="Main.dc.html" aria-current="page">Startseite</a>
+        <a href="BusinessCase.dc.html">Business Case</a>
+        <a href="Konfigurator.dc.html">Konfigurator</a>
+      </nav>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0">
+        <span class="chip" style="background: #F1F5F9; color: #334155">Szenario: Basis 2027</span>
+        <span class="chip chip-ok">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          14 / 22 verifiziert
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex: 1; max-width: 1280px; width: 100%; margin: 0 auto; padding: 48px 24px 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px">
+
+    <!-- Einstieg -->
+    <section style="display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-end">
+      <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <span class="chip chip-neu" style="align-self: flex-start">Vorschlag · Stand 12.11.2026</span>
+        <h1 style="margin: 0; font-size: 44px; line-height: 50px; font-weight: 700; letter-spacing: -0.02em">Drei Kernmodelle und ein Digitalmodell für Kommerzkunden</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 27px; color: #475569; max-width: 640px">Die neuen Kontomodelle entstehen aus drei Quellen: den Nutzungsclustern der Bestandskunden, der Kostenbasis je Leistung und einem Marktvergleich. Jede Zahl auf dieser Seite führt in den Business Case zurück und ist dort als Annahme oder als verifizierter Wert gekennzeichnet.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
+          <a class="btn btn-p" href="BusinessCase.dc.html">Herleitung ansehen</a>
+          <a class="btn btn-s" href="Konfigurator.dc.html">Szenario konfigurieren</a>
+        </div>
+      </div>
+      <div class="card" style="flex: 0 1 360px; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="font-size: 13px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.06em">Legende</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px">
+          <span class="chip chip-ok" style="margin-top: 1px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Verifiziert
+          </span>
+          <span style="font-size: 14px; line-height: 20px; color: #334155">Wert ist mit einer Confluence-Seite belegt. Der blaue Haken öffnet die Quelle.</span>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px">
+          <span class="chip chip-as" style="margin-top: 1px">Annahme</span>
+          <span style="font-size: 14px; line-height: 20px; color: #334155">Arbeitshypothese des Teams, noch ohne Beleg. Zählt im Szenario mit, ist aber offen.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Die vier Modelle -->
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px">
+        <h2 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em">Die vier Modelle</h2>
+        <span style="font-size: 14px; color: #64748B">3 Kernmodelle nach Nutzungsintensität, plus 1 Digitalmodell ohne Filialleistungen · Preise sind Beispielwerte aus dem Szenario</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px">
+
+        <!-- Modell 1 -->
+        <article class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.06em">Modell 1</div>
+              <h3 style="margin: 4px 0 0; font-size: 22px; font-weight: 700">Kommerz Start</h3>
+            </div>
+            <span class="chip" style="background: #F1F5F9; color: #334155">Wenignutzer</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 21px; color: #475569">Gründer, EPU und Kleinbetriebe mit wenigen Buchungen im Monat.</p>
+          <div style="display: flex; align-items: baseline; gap: 6px">
+            <span style="font-size: 34px; font-weight: 700; letter-spacing: -0.02em">9,90 €</span>
+            <span style="font-size: 14px; color: #64748B">/ Monat</span>
+            <span class="chip chip-ok" style="margin-left: auto" title="Verifiziert: Confluence · Pricing-Grundlage Start">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <div class="inc"><span style="color: #475569">Buchungen inkludiert</span><span>30</span></div>
+            <div class="inc"><span style="color: #475569">Debitkarten</span><span>1</span></div>
+            <div class="inc"><span style="color: #475569">Beratung</span><span>Digital</span></div>
+            <div class="inc"><span style="color: #475569">Zusatzbuchung</span><span>0,45 €</span></div>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: #64748B">
+            <span>Kosten 6,10 € + Marge 38 %</span>
+            <a href="BusinessCase.dc.html" style="font-weight: 600; text-decoration: none">Herleitung</a>
+          </div>
+        </article>
+
+        <!-- Modell 2 -->
+        <article class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px; border-color: #1A56DB; box-shadow: 0 0 0 1px #1A56DB inset">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.06em">Modell 2</div>
+              <h3 style="margin: 4px 0 0; font-size: 22px; font-weight: 700">Kommerz Klassik</h3>
+            </div>
+            <span class="chip" style="background: #E8F0FE; color: #153FA3">Größtes Segment</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 21px; color: #475569">KMU mit regelmäßigem Zahlungsverkehr und Filialbezug.</p>
+          <div style="display: flex; align-items: baseline; gap: 6px">
+            <span style="font-size: 34px; font-weight: 700; letter-spacing: -0.02em">19,90 €</span>
+            <span style="font-size: 14px; color: #64748B">/ Monat</span>
+            <span class="chip chip-ok" style="margin-left: auto" title="Verifiziert: Confluence · Pricing-Grundlage Klassik">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <div class="inc"><span style="color: #475569">Buchungen inkludiert</span><span>150</span></div>
+            <div class="inc"><span style="color: #475569">Debitkarten</span><span>2</span></div>
+            <div class="inc"><span style="color: #475569">Beratung</span><span>Filiale + Digital</span></div>
+            <div class="inc"><span style="color: #475569">Zusatzbuchung</span><span>0,35 €</span></div>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: #64748B">
+            <span>Kosten 12,40 € + Marge 38 %</span>
+            <a href="BusinessCase.dc.html" style="font-weight: 600; text-decoration: none">Herleitung</a>
+          </div>
+        </article>
+
+        <!-- Modell 3 -->
+        <article class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.06em">Modell 3</div>
+              <h3 style="margin: 4px 0 0; font-size: 22px; font-weight: 700">Kommerz Premium</h3>
+            </div>
+            <span class="chip" style="background: #F1F5F9; color: #334155">Vielnutzer</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 21px; color: #475569">Betriebe mit hohem Buchungsvolumen, Fremdwährung und Betreuer.</p>
+          <div style="display: flex; align-items: baseline; gap: 6px">
+            <span style="font-size: 34px; font-weight: 700; letter-spacing: -0.02em">39,90 €</span>
+            <span style="font-size: 14px; color: #64748B">/ Monat</span>
+            <span class="chip chip-as" style="margin-left: auto">Annahme</span>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <div class="inc"><span style="color: #475569">Buchungen inkludiert</span><span>Unbegrenzt</span></div>
+            <div class="inc"><span style="color: #475569">Debitkarten</span><span>4</span></div>
+            <div class="inc"><span style="color: #475569">Beratung</span><span>Fester Betreuer</span></div>
+            <div class="inc"><span style="color: #475569">Zusatzbuchung</span><span>–</span></div>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid #F1F5F9; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: #64748B">
+            <span>Kosten 26,80 € + Marge 33 %</span>
+            <a href="BusinessCase.dc.html" style="font-weight: 600; text-decoration: none">Herleitung</a>
+          </div>
+        </article>
+
+        <!-- +1 Modell -->
+        <article class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 18px; background: #0F172A; color: #fff; border-color: #0F172A">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em">+1 · Ergänzung</div>
+              <h3 style="margin: 4px 0 0; font-size: 22px; font-weight: 700">Kommerz Digital</h3>
+            </div>
+            <span class="chip" style="background: #1E293B; color: #CBD5E1">Nur online</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 21px; color: #CBD5E1">Reines Online-Konto ohne Filialleistungen. Antwort auf Neobanken, hält Abwanderer im Haus.</p>
+          <div style="display: flex; align-items: baseline; gap: 6px">
+            <span style="font-size: 34px; font-weight: 700; letter-spacing: -0.02em">4,90 €</span>
+            <span style="font-size: 14px; color: #94A3B8">/ Monat</span>
+            <span class="chip" style="margin-left: auto; background: #FEF0E6; color: #9A3412">Annahme</span>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <div class="inc" style="border-color: #1E293B"><span style="color: #94A3B8">Buchungen inkludiert</span><span>20</span></div>
+            <div class="inc" style="border-color: #1E293B"><span style="color: #94A3B8">Debitkarten</span><span>1 virtuell</span></div>
+            <div class="inc" style="border-color: #1E293B"><span style="color: #94A3B8">Beratung</span><span>Chat</span></div>
+            <div class="inc" style="border-color: #1E293B"><span style="color: #94A3B8">Zusatzbuchung</span><span>0,30 €</span></div>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid #1E293B; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: #94A3B8">
+            <span>Kosten 3,10 € + Marge 37 %</span>
+            <a href="BusinessCase.dc.html" style="font-weight: 600; text-decoration: none; color: #93C5FD">Herleitung</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Entstehung -->
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px">
+        <h2 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em">So sind die Modelle entstanden</h2>
+        <a href="BusinessCase.dc.html" style="font-size: 14px; font-weight: 600; text-decoration: none">Zum vollständigen Business Case</a>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <div class="step">
+          <div style="font-size: 12px; font-weight: 700; color: #1A56DB">01</div>
+          <div style="font-size: 16px; font-weight: 600; margin-top: 6px">Ist-Analyse</div>
+          <div style="font-size: 13px; line-height: 19px; color: #64748B; margin-top: 6px">Bestand, heutige Tarife, Ertrag und Kosten je Leistung.</div>
+        </div>
+        <div class="arrow hide-sm" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="step">
+          <div style="font-size: 12px; font-weight: 700; color: #1A56DB">02</div>
+          <div style="font-size: 16px; font-weight: 600; margin-top: 6px">Segmentierung</div>
+          <div style="font-size: 13px; line-height: 19px; color: #64748B; margin-top: 6px">Kunden nach Buchungen, Kanal und Beratungsbedarf geclustert.</div>
+        </div>
+        <div class="arrow hide-sm" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="step">
+          <div style="font-size: 12px; font-weight: 700; color: #1A56DB">03</div>
+          <div style="font-size: 16px; font-weight: 600; margin-top: 6px">Modellbildung</div>
+          <div style="font-size: 13px; line-height: 19px; color: #64748B; margin-top: 6px">Drei Cluster werden drei Modelle, Online-Abwanderer das +1.</div>
+        </div>
+        <div class="arrow hide-sm" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="step">
+          <div style="font-size: 12px; font-weight: 700; color: #1A56DB">04</div>
+          <div style="font-size: 16px; font-weight: 600; margin-top: 6px">Preisbildung</div>
+          <div style="font-size: 13px; line-height: 19px; color: #64748B; margin-top: 6px">Kostenbasis plus Zielmarge, geprüft am Marktvergleich.</div>
+        </div>
+        <div class="arrow hide-sm" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="step">
+          <div style="font-size: 12px; font-weight: 700; color: #1A56DB">05</div>
+          <div style="font-size: 16px; font-weight: 600; margin-top: 6px">Marktwirkung</div>
+          <div style="font-size: 13px; line-height: 19px; color: #64748B; margin-top: 6px">Migration, Ertragsdelta und Abwanderungsrisiko je Modell.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wirkung in Kürze -->
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px">
+        <h2 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em">Wirkung im Szenario „Basis 2027“</h2>
+        <span style="font-size: 14px; color: #64748B">Beispielwerte · ändern sich mit dem gewählten Szenario</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+        <div class="card" style="padding: 22px 24px; display: flex; flex-direction: column; gap: 8px">
+          <div style="font-size: 13px; font-weight: 600; color: #64748B">Ertrag Kontoführung p. a.</div>
+          <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.02em">+ 6,8 Mio €</div>
+          <div style="font-size: 13px; color: #475569">gegenüber heutigem Tarifwerk · 24 Felder im Rechenweg</div>
+        </div>
+        <div class="card" style="padding: 22px 24px; display: flex; flex-direction: column; gap: 8px">
+          <div style="font-size: 13px; font-weight: 600; color: #64748B">Kunden mit Preisänderung</div>
+          <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.02em">61 %</div>
+          <div style="font-size: 13px; color: #475569">davon 38 % günstiger, 23 % teurer als heute</div>
+        </div>
+        <div class="card" style="padding: 22px 24px; display: flex; flex-direction: column; gap: 8px">
+          <div style="font-size: 13px; font-weight: 600; color: #64748B">Preisposition zum Markt</div>
+          <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.02em">− 4 %</div>
+          <div style="font-size: 13px; color: #475569">Klassik unter dem Median der drei Hauptwettbewerber</div>
+        </div>
+        <div class="card" style="padding: 22px 24px; display: flex; flex-direction: column; gap: 8px">
+          <div style="font-size: 13px; font-weight: 600; color: #64748B">Belastbarkeit des Business Case</div>
+          <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #1A56DB">64 %</div>
+          <div style="font-size: 13px; color: #475569">14 von 22 Eingabefeldern verifiziert · 8 offene Annahmen</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="border-top: 1px solid #E2E8F0; background: #fff">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px; font-size: 13px; color: #64748B; display: flex; flex-wrap: wrap; gap: 8px 24px">
+      <span>Szenario „Basis 2027“ · zuletzt gespeichert 12.11.2026</span>
+      <span>Alle Beträge in Euro, netto, pro Monat</span>
+      <span style="margin-left: auto">Internes Arbeitsmittel · keine Kundenkommunikation</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
